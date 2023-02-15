@@ -22,4 +22,11 @@ public class EventService {
     public List<Event> getEvent(LocalDate startDate, LocalDate endDate) {
         return eventRepository.findAllByYearAndMonth(startDate, endDate);
     }
+
+    public Long create(Event event) {
+
+        eventRepository.save(event);
+
+        return event.getId();
+    }
 }

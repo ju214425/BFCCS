@@ -1,5 +1,6 @@
 package bfccs.bfccs.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Member {
 
     @Id @GeneratedValue
@@ -19,6 +20,7 @@ public class Member {
     private String sn;
     private String team;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Event> events = new ArrayList<>();
 
@@ -27,5 +29,4 @@ public class Member {
         this.events.add(event);
         event.setMember(this);
     }
-
 }
